@@ -70,17 +70,19 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${poppins.className} h-full antialiased`}>
+   <html lang="en" className={`${poppins.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <header className="py-2 md:w-11/12 mx-auto">
-          <Navbar />
-        </header>
-        <main className="py-2 md:w-11/12 mx-auto min-h-[calc(100vh-300px)]">
-          {children}
+        {/* Navbar - outside of any width constraints */}
+        <Navbar />
+        
+        {/* Main content with padding-top to account for fixed navbar */}
+        <main className="flex-1 pt-4">
+          <div className="md:w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
+            {children}
+          </div>
         </main>
-        <footer>
-          <Footer />
-        </footer>
+        
+        <Footer />
       </body>
     </html>
   );

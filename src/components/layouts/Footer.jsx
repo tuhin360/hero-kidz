@@ -4,7 +4,7 @@ import Logo from "./Logo";
 const Footer = () => {
   return (
     <div>
-      <div className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
+      <div className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10 max-w-7xl mx-auto w-full">
         <Logo />
         <nav>
           <h6 className="footer-title">Services</h6>
