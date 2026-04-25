@@ -2,7 +2,7 @@ import Image from "next/image";
 import { getSingleProduct } from "@/actions/server/product";
 import { FaStar, FaShoppingCart } from "react-icons/fa";
 
-/* SEO METADATA */
+/* ---------------- SEO METADATA ---------------- */
 export async function generateMetadata({ params }) {
   const { id } = await params;
   const product = await getSingleProduct(id);
