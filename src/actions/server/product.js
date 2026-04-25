@@ -7,11 +7,11 @@ import { ObjectId } from "mongodb";
 export const getProducts = async () => {
   const col = await dbConnect(collections.PRODUCTS);
 
-  const products = await col.find({}).toArray();
+  const products = await col.find({ featured: false }).toArray();
 
   return products.map((p) => ({
     ...p,
-    _id: p._id.toString(), // ✅ IMPORTANT
+    _id: p._id.toString(), 
   }));
 };
 
@@ -29,6 +29,20 @@ export const getSingleProduct = async (id) => {
 
   return {
     ...product,
-    _id: product._id.toString(), // ✅ IMPORTANT
+    _id: product._id.toString(), 
   };
+};
+
+// GET FEATURED PRODUCTS
+export const getFeaturedProducts = async () => {
+  const col = await dbConnect(collections.PRODUCTS);
+
+  const products = await col
+    .find({ featured: true })
+    .toArray();
+
+  return products.map((p) => ({
+    ...p,
+    _id: p._id.toString(),
+  }));
 };

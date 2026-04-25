@@ -20,6 +20,7 @@
     ],
     "reviews": 19,
     "sold": 31,
+      "featured": false,
     "ratings": 4.6,
     "info": [
       "সংখ্যা ও গণনার ধারণা তৈরি করে",
@@ -50,6 +51,7 @@
     ],
     "reviews": 22,
     "sold": 40,
+    "featured": false,
     "ratings": 4.7,
     "info": [
       "প্রাণী ও প্রকৃতি সম্পর্কে জ্ঞান বাড়ায়",
@@ -80,6 +82,7 @@
     ],
     "reviews": 26,
     "sold": 48,
+    "featured": false,
     "ratings": 4.6,
     "info": [
       "লজিক ও সমস্যা সমাধানের দক্ষতা বাড়ায়",
@@ -111,6 +114,7 @@
     ],
     "reviews": 21,
     "sold": 37,
+    "featured": false,
     "ratings": 4.7,
     "info": [
       "সৃজনশীলতা ও কল্পনাশক্তি বাড়ায়",
@@ -142,6 +146,7 @@
     ],
     "reviews": 15,
     "sold": 28,
+    "featured": false,
     "ratings": 4.4,
     "info": [
       "Graduation বা school event এ ব্যবহারযোগ্য",
@@ -174,6 +179,7 @@
     ],
     "reviews": 18,
     "sold": 32,
+    "featured": false,
     "ratings": 4.6,
     "info": [
       "Imaginative play এবং role-play এর জন্য উপযোগী",
@@ -204,6 +210,7 @@
     ],
     "reviews": 20,
     "sold": 30,
+    "featured": false,
     "ratings": 4.7,
     "info": [
       "Role-playing এবং career exploration এর জন্য উপযোগী",
@@ -234,12 +241,115 @@
     ],
     "reviews": 18,
     "sold": 28,
+    "featured": false,
     "ratings": 4.6,
     "info": [
       "Practical engineering skills শেখার জন্য উপযোগী",
       "Problem-solving এবং logical thinking উন্নত করে",
       "Durable এবং non-toxic material",
       "Future STEM learning এবং hands-on experience নিশ্চিত করে"
+    ]
+  },
+  {
+    "title": "STEM Magnetic Building Blocks Set",
+    "image": "https://images.unsplash.com/photo-1588072432836-e10032774350",
+    "price": 1500,
+    "discount": 12,
+    "ratings": 4.8,
+    "reviews": 32,
+    "sold": 60,
+    "featured": true,
+    "description": "Magnetic building blocks that help kids develop STEM skills through creative construction.",
+    "info": [
+      "Enhances creativity",
+      "STEM learning",
+      "Safe magnetic design",
+      "Durable material"
+    ]
+  },
+  {
+    "title": "Wooden Alphabet Puzzle Board",
+    "image": "https://images.unsplash.com/photo-1596462502278-27bfdc403348",
+    "price": 900,
+    "discount": 8,
+    "ratings": 4.7,
+    "reviews": 20,
+    "sold": 45,
+    "featured": true,
+    "description": "Colorful wooden puzzle to help kids learn alphabets in a fun way.",
+    "info": [
+      "Improves memory",
+      "Alphabet recognition",
+      "Safe wood material",
+      "Bright colors"
+    ]
+  },
+  {
+    "title": "Kids DIY Craft Kit",
+    "image": "https://images.unsplash.com/photo-1603575448368-153f093fd0b0",
+    "price": 1100,
+    "discount": 10,
+    "ratings": 4.6,
+    "reviews": 18,
+    "sold": 39,
+    "featured": true,
+    "description": "Creative DIY craft kit to boost imagination and hands-on skills.",
+    "info": [
+      "Creative learning",
+      "DIY activity",
+      "Improves focus",
+      "Fun and engaging"
+    ]
+  },
+  {
+    "title": "Kids Digital Learning Tablet Toy",
+    "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3",
+    "price": 1800,
+    "discount": 15,
+    "ratings": 4.5,
+    "reviews": 25,
+    "sold": 52,
+    "featured": true,
+    "description": "Interactive learning tablet for kids with sounds, numbers, and games.",
+    "info": [
+      "Interactive learning",
+      "Audio-visual support",
+      "Educational games",
+      "Portable"
+    ]
+  },
+  {
+    "title": "Montessori Shape Sorting Box",
+    "image": "https://images.unsplash.com/photo-1587654780291-39c9404d746b",
+    "price": 1200,
+    "discount": 9,
+    "ratings": 4.7,
+    "reviews": 22,
+    "sold": 41,
+    "featured": true,
+    "description": "Shape sorting toy that improves cognitive and motor skills.",
+    "info": [
+      "Shape recognition",
+      "Motor skill development",
+      "Safe materials",
+      "Montessori learning"
+    ]
+  },
+  {
+    "title": "Kids Math Learning Abacus",
+    "image": "https://images.unsplash.com/photo-1604881991720-f91add269bed",
+    "price": 850,
+    "discount": 6,
+    "ratings": 4.6,
+    "reviews": 19,
+    "sold": 36,
+    "featured": true,
+    "description": "Classic abacus tool to learn counting and basic math.",
+    "info": [
+      "Math learning",
+      "Improves focus",
+      "Traditional tool",
+      "Durable"
     ]
   }
 ]

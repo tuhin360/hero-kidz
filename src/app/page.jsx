@@ -1,4 +1,5 @@
 import Banner from "@/components/home/Banner";
+import FeaturedProducts from "@/components/home/FeaturedProducts";
 import Products from "@/components/home/Products";
 import Image from "next/image";
 
@@ -10,6 +11,9 @@ export default function Home() {
       </section>
       <section>
         <Products />
+      </section>
+      <section>
+        <FeaturedProducts/>
       </section>
     </div>
   );
