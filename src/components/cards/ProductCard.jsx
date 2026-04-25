@@ -46,17 +46,17 @@ export default function ProductCard({ product }) {
         </div>
 
         {/* Buttons */}
-        <div className="flex gap-2 mt-2">
-          <button className="btn btn-primary btn-sm flex-1 flex items-center justify-center gap-2">
+        <div className="flex flex-col gap-2 mt-2">
+          <button className="btn btn-primary btn-sm w-full flex items-center justify-center gap-2">
             <FaShoppingCart />
-            Cart
+            Add to Cart
           </button>
 
           <Link
             href={`/products/${_id}`}
-            className="btn btn-outline btn-sm flex-1"
+            className="btn btn-outline btn-sm w-full text-center"
           >
-            View
+            Details
           </Link>
         </div>
       </div>
