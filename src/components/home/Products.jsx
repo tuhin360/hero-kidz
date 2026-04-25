@@ -2,7 +2,7 @@ import { getProducts } from "@/actions/server/product";
 import ProductCard from "../cards/ProductCard";
 
 const Products = async () => {
-  const products = (await getProducts()) || [];
+  const products = await getProducts();
 
   return (
     <div className="max-w-7xl mx-auto px-4">
