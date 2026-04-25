@@ -1,6 +1,6 @@
 import { getProducts } from "@/actions/server/product";
-import ProductCard from "../cards/ProductCard";
-import Link from "next/link";
+import ProductList from "../sections/ProductList";
+ 
 
 const Products = async () => {
   const products = await getProducts();
@@ -10,19 +10,15 @@ const Products = async () => {
       <div className="flex items-center justify-between mb-8">
         <h2 className="text-2xl md:text-3xl font-bold">Our Products</h2>
 
-        <Link
+        <a
           href="/products"
           className="text-primary font-medium hover:underline"
         >
           View All →
-        </Link>
+        </a>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {products.map((product) => (
-          <ProductCard key={product._id} product={product} />
-        ))}
-      </div>
+      <ProductList initialProducts={products} />
     </div>
   );
 };
