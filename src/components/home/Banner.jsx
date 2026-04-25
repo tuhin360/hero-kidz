@@ -7,7 +7,7 @@ const Banner = () => {
     <div className="flex justify-between items-center ">
       <div className="flex-1 space-y-4">
         <h2 className={`${fontBangla.className} text-6xl font-bold leading-18`}>আপনার শিশুকে খেলনার <span className="text-primary">জগতে স্বাগতম</span></h2>
-        <p className="">Buy the best toys for your kids</p>
+        <p className="">Buy the best toys for your kids at Hero Kidz and get 50% off</p>
         <button className="btn btn-primary">Shop Now</button>
       </div>
       <div className="flex-1">
