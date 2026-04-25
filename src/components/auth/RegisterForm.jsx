@@ -4,8 +4,12 @@ import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Link from "next/link";
 import SocialButton from "./SocialButton";
-import { postUser } from "@/actions/server/auth";
 import { useRouter } from "next/navigation";
+import { auth } from "@/lib/firebase";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -17,12 +21,10 @@ const RegisterForm = () => {
     password: "",
   });
 
-  // handle change
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -30,13 +32,22 @@ const RegisterForm = () => {
       return alert("All fields are required");
     }
 
-    const result = await postUser(form);
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        form.email,
+        form.password
+      );
 
-    if (result?.acknowledged) {
-      alert("Successfully registered! Please login.");
-      router.push("/login");
-    } else {
-      alert("User already exists or error!");
+      // set display name
+      await updateProfile(userCredential.user, {
+        displayName: form.name,
+      });
+
+      alert("Registration successful ✅");
+      router.push("/");
+    } catch (error) {
+      alert(error.message);
     }
   };
 
@@ -49,60 +60,43 @@ const RegisterForm = () => {
         Create Your Account
       </h2>
 
-      {/* Name */}
-      <div>
-        <label className="text-sm font-medium">Full Name</label>
+      <input
+        type="text"
+        name="name"
+        value={form.name}
+        onChange={handleChange}
+        placeholder="Full Name"
+        className="input input-bordered w-full"
+      />
+
+      <input
+        type="email"
+        name="email"
+        value={form.email}
+        onChange={handleChange}
+        placeholder="Email"
+        className="input input-bordered w-full"
+      />
+
+      <div className="relative">
         <input
-          type="text"
-          name="name"
-          value={form.name}
+          type={showPassword ? "text" : "password"}
+          name="password"
+          value={form.password}
           onChange={handleChange}
-          placeholder="Enter your full name"
-          className="input input-bordered w-full mt-1"
+          placeholder="Password"
+          className="input input-bordered w-full pr-10"
         />
+        <button
+          type="button"
+          onClick={() => setShowPassword(!showPassword)}
+          className="absolute right-3 top-1/2 -translate-y-1/2"
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </button>
       </div>
 
-      {/* Email */}
-      <div>
-        <label className="text-sm font-medium">Email</label>
-        <input
-          type="email"
-          name="email"
-          value={form.email}
-          onChange={handleChange}
-          placeholder="Enter your email"
-          className="input input-bordered w-full mt-1"
-        />
-      </div>
-
-      {/* Password */}
-      <div>
-        <label className="text-sm font-medium">Password</label>
-
-        <div className="relative mt-1">
-          <input
-            type={showPassword ? "text" : "password"}
-            name="password"
-            value={form.password}
-            onChange={handleChange}
-            placeholder="Create a password"
-            className="input input-bordered w-full pr-10"
-          />
-
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
-          >
-            {showPassword ? <FaEyeSlash /> : <FaEye />}
-          </button>
-        </div>
-      </div>
-
-      {/* Button */}
-      <button type="submit" className="btn btn-primary w-full">
-        Register
-      </button>
+      <button className="btn btn-primary w-full">Register</button>
 
       <div className="divider">OR</div>
 
@@ -110,7 +104,7 @@ const RegisterForm = () => {
 
       <p className="text-center text-sm">
         Already have an account?{" "}
-        <Link href="/login" className="text-primary font-medium">
+        <Link href="/login" className="text-primary">
           Login
         </Link>
       </p>
