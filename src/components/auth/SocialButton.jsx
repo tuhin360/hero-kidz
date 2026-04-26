@@ -2,23 +2,44 @@
 
 import { FaGoogle } from "react-icons/fa";
 import { auth } from "@/lib/firebase";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithRedirect,
+  getRedirectResult,
+} from "firebase/auth";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const SocialButton = () => {
   const router = useRouter();
 
+  const provider = new GoogleAuthProvider();
+
+  // 🚀 LOGIN
   const handleGoogleLogin = async () => {
     try {
-      const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
-
-      alert("Google Login Success ✅");
-      router.push("/");
+      await signInWithRedirect(auth, provider);
     } catch (error) {
-      alert(error.message);
+      console.log(error.message);
     }
   };
+
+  // 🔥 HANDLE REDIRECT RESULT (FIXED)
+  useEffect(() => {
+    const checkLogin = async () => {
+      try {
+        const result = await getRedirectResult(auth);
+
+        if (result?.user) {
+          router.push("/");
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    checkLogin();
+  }, [router]);
 
   return (
     <button

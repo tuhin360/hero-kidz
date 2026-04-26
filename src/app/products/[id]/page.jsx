@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { getSingleProduct } from "@/actions/server/product";
-import { FaStar, FaShoppingCart } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import CartButton from "@/components/buttons/CartButton";
 
 /* ---------------- SEO METADATA ---------------- */
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: product.title,
       description: product.description?.slice(0, 160),
-      url: `https://hero-kidz-seven-lemon.vercel.app/products/${params.id}`,
+      url: `https://hero-kidz-seven-lemon.vercel.app/products/${id}`,
       siteName: "HeroKidz",
       type: "article",
 
