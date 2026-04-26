@@ -15,7 +15,7 @@ const SocialButton = () => {
 
   const provider = new GoogleAuthProvider();
 
-  // 🚀 LOGIN
+  //  LOGIN
   const handleGoogleLogin = async () => {
     try {
       await signInWithRedirect(auth, provider);
@@ -24,7 +24,7 @@ const SocialButton = () => {
     }
   };
 
-  // 🔥 HANDLE REDIRECT RESULT (FIXED)
+  //  HANDLE REDIRECT RESULT (FIXED)
   useEffect(() => {
     const checkLogin = async () => {
       try {

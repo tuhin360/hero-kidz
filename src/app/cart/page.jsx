@@ -4,13 +4,15 @@ import { useEffect, useState } from "react";
 import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
 import Image from "next/image";
+import Link from "next/link";
 
 const CartPage = () => {
-  const { user } = useAuth();
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { user, loading: authLoading } = useAuth();
 
-  // 🔥 FETCH CART
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // FETCH CART
   const fetchCart = async () => {
     if (!user?.email) return;
 
@@ -18,9 +20,7 @@ const CartPage = () => {
 
     const res = await fetch("/api/cart/items", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: user.email }),
     });
 
@@ -31,10 +31,46 @@ const CartPage = () => {
   };
 
   useEffect(() => {
-    fetchCart();
+    if (user?.email) {
+      fetchCart();
+    }
   }, [user]);
 
-  // ➕➖ QUANTITY (future API)
+  //NOT LOGGED IN UI
+  if (!authLoading && !user) {
+    return (
+      <div className="min-h-[60vh] flex flex-col items-center justify-center text-center">
+        <h2 className="text-2xl font-bold mb-2">Please login first 🔐</h2>
+        <p className="text-gray-500 mb-4">
+          You need to login to view your cart items
+        </p>
+
+        <Link href="/login" className="btn btn-primary">
+          Go to Login
+        </Link>
+      </div>
+    );
+  }
+
+  //  AUTH LOADING ONLY
+  if (authLoading) {
+    return <p className="text-center mt-10">Checking authentication...</p>;
+  }
+
+  //  CART LOADING
+  if (loading) {
+    return <p className="text-center mt-10">Loading cart...</p>;
+  }
+
+  //  EMPTY CART
+  if (!items.length) {
+    return (
+      <div className="text-center mt-20">
+        <h2 className="text-2xl font-bold">Your cart is empty 🛒</h2>
+      </div>
+    );
+  }
+
   const updateQty = async (id, type) => {
     const res = await fetch("/api/cart/update", {
       method: "PATCH",
@@ -50,7 +86,6 @@ const CartPage = () => {
     }
   };
 
-  // ❌ REMOVE (FIXED)
   const removeItem = async (id) => {
     const res = await fetch("/api/cart", {
       method: "DELETE",
@@ -62,33 +97,15 @@ const CartPage = () => {
 
     if (res.ok) {
       fetchCart();
-
-      // 🔥 notify navbar instantly
       window.dispatchEvent(new Event("cart-updated"));
-
       Swal.fire("Removed", data.message, "success");
-    } else {
-      Swal.fire("Error", data.message, "error");
     }
   };
 
-  // 💰 TOTAL
   const total = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0,
   );
-
-  if (loading) {
-    return <p className="text-center mt-10">Loading cart...</p>;
-  }
-
-  if (!items.length) {
-    return (
-      <div className="text-center mt-20">
-        <h2 className="text-2xl font-bold">Your cart is empty 🛒</h2>
-      </div>
-    );
-  }
 
   return (
     <div className="max-w-5xl mx-auto p-4">
@@ -104,10 +121,10 @@ const CartPage = () => {
             <div className="flex items-center gap-4">
               <Image
                 src={item.image}
-                alt={item.name || "Product image"}
+                alt={item.name || "product"}
                 width={64}
                 height={64}
-                className=" rounded object-cover"
+                className="rounded object-cover"
               />
 
               <div>
@@ -120,26 +137,22 @@ const CartPage = () => {
 
             {/* RIGHT */}
             <div className="flex items-center gap-3">
-              {/* QTY */}
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => updateQty(item._id, "decrease")}
-                  className="btn btn-sm"
-                >
-                  -
-                </button>
+              <button
+                onClick={() => updateQty(item._id, "decrease")}
+                className="btn btn-sm"
+              >
+                -
+              </button>
 
-                <span>{item.quantity}</span>
+              <span>{item.quantity}</span>
 
-                <button
-                  onClick={() => updateQty(item._id, "increase")}
-                  className="btn btn-sm"
-                >
-                  +
-                </button>
-              </div>
+              <button
+                onClick={() => updateQty(item._id, "increase")}
+                className="btn btn-sm"
+              >
+                +
+              </button>
 
-              {/* REMOVE */}
               <button
                 onClick={() => removeItem(item._id)}
                 className="btn btn-error btn-sm"
