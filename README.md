@@ -1,57 +1,43 @@
-# Hero Kidzz - Project Assets
-<img src="assets/hero.png">
-## Overview
+# 🛒 Ecommerce Web App (Next.js + Firebase)
 
-Hero Kidzz is a small, single-vendor e-commerce web application designed for selling children's products. This repository contains all project assets including images, icons, and media files.
+## 📌 Project Description
 
-## Features
+This is a modern full-stack ecommerce web application(HeroKidz) built with
+Next.js, Firebase Authentication, and MongoDB. It allows users to browse
+products, add items to cart, manage quantity with a
+smooth user experience.
 
-- 🛍️ **Product Catalog** - Browse children's toys and accessories
-- 🛒 **Shopping Cart** - Add and manage items
-- 💳 **Easy Checkout** - Safe payment processing
-- 📦 **Order Invoice** - Monitor shipments
-- 👤 **User Accounts** - Save preferences and history
-- 🎨 **Responsive Design** - Mobile-friendly interface
-- ⭐ **Product Reviews** - Customer feedback system
+## ✨ Key Features
 
-## Starter packages
-```
-npm install react-icons mongodb bcryptjs
-```
+-   Firebase Authentication (Email-Password)
+-   Product listing & details
+-   Add to cart system
+-   Quantity update & remove items
+-   User-based cart (MongoDB)
+-   Live cart count update
+-   Protected routes
+-   Responsive UI
 
-## Colors
+## ⚙️ Setup & Installation
 
-```
- /* Brand */
-  --color-primary: oklch(65% 0.23 35);
-  --color-secondary: oklch(58% 0.18 30);
-  --color-accent: oklch(72% 0.20 55);
+### 1. Clone repo
 
-  /* Base */
-  --color-base-100: oklch(100% 0 0);
-  --color-base-200: oklch(97% 0.01 95);
-  --color-base-300: oklch(92% 0.015 95);
+git clone https://github.com/tuhin360/hero-kidz cd project
 
-  /* Neutral */
-  --color-neutral: oklch(35% 0.01 260);
-  --color-neutral-content: oklch(96% 0 0);
+### 2. Install dependencies
 
-  /* Feedback */
-  --color-success: oklch(70% 0.17 145);
-  --color-error: oklch(62% 0.24 28);
-```
+pnpm install
 
-## Getting Started
+### 3. Environment variables
 
-1. Clone the repository
-2. Extract assets to your project directory
-3. Reference images in your application
+Create .env.local and add Firebase + MongoDB keys
 
-## Contributing
+### 4. Run project
 
-Follow project guidelines when adding new assets.
+pnpm run dev
 
-## License
+## 🗺️ Route Summary
 
-All assets are proprietary to Hero Kidzz.
-# Hero-Kidz-assets
+Public: - / Home - /products - /about - /contact - /login
+
+Protected: - /cart - /orders - /profile
